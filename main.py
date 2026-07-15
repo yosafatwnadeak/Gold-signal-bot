@@ -1,20 +1,23 @@
 import os
 import requests
 
+from goldvision.antam import get_antam_price
+
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-message = """
-🏆 GOLD SIGNAL BOT
+status = get_antam_price()
 
-🟡 SIGNAL : WAIT
+message = f"""
+🏆 GoldVision
 
-Bot berhasil berjalan di GitHub Actions.
+🔍 Status Koneksi Antam
 
-Selanjutnya kita akan menambahkan:
-✅ Harga Antam
-✅ Buyback
-✅ Buy / Wait / Sell
+HTTP Status : {status}
+
+✅ Bot berhasil mengambil halaman website Antam.
+
+Powered by GoldVision
 """
 
 url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
